@@ -1,0 +1,155 @@
+#include "ofApp.h"
+
+using namespace glm;
+
+void ofApp::reloadShaders()
+{
+	shadersNeedReload = false;
+
+	// reload shaders
+	// shader.load("shaders/*.vert", "shaders/*.frag");
+}
+
+//--------------------------------------------------------------
+void ofApp::setup()
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::update()
+{
+	if (shadersNeedReload) { reloadShaders(); }
+
+	// time since last frame
+	const float dt { static_cast<float>(ofGetLastFrameTime()) };
+
+	// update position
+	camera.position += mat3(rotate(cameraHead, vY)) * velocity * dt;
+	camera.rotation = rotate(cameraHead, vY) * rotate(cameraPitch, vX);
+}
+
+void ofApp::updateCameraRotation(float dx, float dy)
+{
+	cameraHead -= dx;
+	cameraPitch -= dy;
+}
+
+//--------------------------------------------------------------
+void ofApp::draw()
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::keyPressed(int key)
+{
+	const int vel { 5 };
+	switch (key)
+	{
+		case '`': shadersNeedReload = true; break;
+
+		case 'a': velocity.x = -vel; break;
+		case 'A': velocity.x = -vel; break;
+		case 'd': velocity.x = vel; break;
+		case 'D': velocity.x = vel; break;
+
+		case 'q': velocity.y = -vel; break;
+		case 'Q': velocity.y = -vel; break;
+		case 'e': velocity.y = vel; break;
+		case 'E': velocity.y = vel; break;
+
+		case 'w': velocity.z = -vel; break;
+		case 'W': velocity.z = -vel; break;
+		case 's': velocity.z = vel; break;
+		case 'S': velocity.z = vel; break;
+
+		default: break;
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::keyReleased(int key)
+{
+	switch (key)
+	{
+		case 'a': velocity.x = 0; break;
+		case 'A': velocity.x = 0; break;
+		case 'd': velocity.x = 0; break;
+		case 'D': velocity.x = 0; break;
+
+		case 'q': velocity.y = 0; break;
+		case 'Q': velocity.y = 0; break;
+		case 'e': velocity.y = 0; break;
+		case 'E': velocity.y = 0; break;
+
+		case 'w': velocity.z = 0; break;
+		case 'W': velocity.z = 0; break;
+		case 's': velocity.z = 0; break;
+		case 'S': velocity.z = 0; break;
+
+		default: break;
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseMoved(int x, int y)
+{
+	if (prevX != 0 && prevY != 0)
+	{
+		//update camera rotation based on mouse movement
+		updateCameraRotation(mouseSensitivity * (x - prevX), mouseSensitivity * (y - prevY));
+	}
+
+	//remember where the mouse was this frame
+	prevX = x;
+	prevY = y;
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseDragged(int x, int y, int button)
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mousePressed(int x, int y, int button)
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseReleased(int x, int y, int button)
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseEntered(int x, int y)
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseExited(int x, int y)
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::windowResized(int w, int h)
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::gotMessage(ofMessage msg)
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::dragEvent(ofDragInfo dragInfo)
+{
+
+}
