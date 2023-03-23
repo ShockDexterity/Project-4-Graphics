@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "Camera.h"
+#include "MySceneGraph.h"
 
 class ofApp : public ofBaseApp
 {
@@ -23,6 +24,16 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
+
+	ofMesh cone{};
+	ofMesh cube{};
+	ofMesh cylinder{};
+	ofMesh sphere{};
+	ofMesh torus{};
+
+	ofShader shader{};
+
+	MySceneGraph graph {};
 
 	int prevX { 0 };
 	int prevY { 0 };

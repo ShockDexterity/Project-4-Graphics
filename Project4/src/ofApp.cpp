@@ -8,13 +8,19 @@ void ofApp::reloadShaders()
 	shadersNeedReload = false;
 
 	// reload shaders
-	// shader.load("shaders/*.vert", "shaders/*.frag");
+	shader.load("shaders/robot.vert", "shaders/robot.frag");
 }
 
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+	cone.load("models/cone.ply");
+	cube.load("models/cube.ply");
+	cylinder.load("models/cylinder.ply");
+	sphere.load("models/sphere.ply");
+	torus.load("models/torus.ply");
 
+	graph.setup(cone, cube, cylinder, shader);
 }
 
 //--------------------------------------------------------------

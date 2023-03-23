@@ -183,6 +183,7 @@
     <ClCompile Include="src\CameraMatrices.cpp" />
     <ClCompile Include="src\LitDrawNode.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MySceneGraph.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\SimpleAnimationNode.cpp" />
     <ClCompile Include="src\SimpleDrawNode.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="src\DirectionalLight.h" />
     <ClInclude Include="src\Lighting.h" />
     <ClInclude Include="src\LitDrawNode.h" />
+    <ClInclude Include="src\MySceneGraph.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\PointLight.h" />
     <ClInclude Include="src\SceneGraphNode.h" />
@@ -213,6 +215,10 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\shaders\robot.frag" />
+    <None Include="bin\data\shaders\robot.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

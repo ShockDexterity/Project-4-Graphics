@@ -22,6 +22,9 @@
     <ClCompile Include="src\SpotLightNode.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\MySceneGraph.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -65,8 +68,19 @@
     <ClInclude Include="src\SpotLightNode.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\MySceneGraph.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\shaders\robot.frag">
+      <Filter>src</Filter>
+    </None>
+    <None Include="bin\data\shaders\robot.vert">
+      <Filter>src</Filter>
+    </None>
   </ItemGroup>
 </Project>
