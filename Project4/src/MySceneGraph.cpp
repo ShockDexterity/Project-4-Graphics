@@ -10,13 +10,13 @@ void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const o
 	rootNode.childNodes.emplace_back(new SimpleAnimationNode(1.0f, vec3(1, 1, 1)));
 
 	// Animated torus node is the most recent node added to the scene graph at this point
-	torusAnimNode = rootNode.childNodes.back();
+	cubeAnimNode = rootNode.childNodes.back();
 
 	// Attach torus mesh node to the animated node
-	torusAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, shader });
+	cubeAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, shader });
 
 	// Torus mesh is most recent node added
-	auto torusMeshNode { torusAnimNode->childNodes.back() };
+	auto cubeMeshNode { cubeAnimNode->childNodes.back() };
 
 	// Create joint node
 	/*torusAnimNode->childNodes.emplace_back(new SimpleAnimationNode { 2.0f, vec3(1, 0, 0) });

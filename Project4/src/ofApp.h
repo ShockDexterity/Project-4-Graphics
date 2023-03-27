@@ -25,13 +25,13 @@ public:
 
 private:
 
-	ofMesh cone{};
-	ofMesh cube{};
-	ofMesh cylinder{};
-	ofMesh sphere{};
-	ofMesh torus{};
+	ofMesh cone {};
+	ofMesh cube {};
+	ofMesh cylinder {};
+	ofMesh sphere {};
+	ofMesh torus {};
 
-	ofShader shader{};
+	ofShader shader {};
 
 	MySceneGraph graph {};
 
@@ -44,7 +44,7 @@ private:
 	glm::vec3 velocity { 0, 0, 0 };
 
 	// Position of the camera in world space
-	Camera camera{ glm::vec3(0, 0, 2) };
+	Camera camera { glm::vec3(0, 0, 2) };
 
 	float cameraHead { 0 };
 	float cameraPitch { 0 };

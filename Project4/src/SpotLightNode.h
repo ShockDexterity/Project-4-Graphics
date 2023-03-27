@@ -5,8 +5,8 @@
 class SpotLightNode : public SceneGraphNode
 {
 public:
-    SpotLight spotLight;
+	SpotLight spotLight;
 
 protected:
-    virtual void updateNode(float dt, const glm::mat4& model) override;
+	virtual void updateNode(float dt, const glm::mat4& model) override;
 };

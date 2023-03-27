@@ -4,11 +4,11 @@
 class MySceneGraph
 {
 public:
-    void setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const ofMesh& cylinderMesh, const ofShader& shader);
+	void setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const ofMesh& cylinderMesh, const ofShader& shader);
 
-    // Root node of the scene graph
-    SceneGraphNode rootNode{};
+	// Root node of the scene graph
+	SceneGraphNode rootNode {};
 
 private:
-    std::shared_ptr<SceneGraphNode> torusAnimNode;
+	std::shared_ptr<SceneGraphNode> cubeAnimNode;
 };
