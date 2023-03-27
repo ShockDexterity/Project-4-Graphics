@@ -43,7 +43,8 @@ private:
 	const glm::vec3 vY { 0, 1, 0 };
 	glm::vec3 velocity { 0, 0, 0 };
 
-	Camera camera { glm::vec3(50, 50, 200) };
+	// Position of the camera in world space
+	Camera camera{ glm::vec3(0, 0, 2) };
 
 	float cameraHead { 0 };
 	float cameraPitch { 0 };
