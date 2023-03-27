@@ -78,8 +78,11 @@ void ofApp::keyPressed(int key)
 
 		case 'a': velocity.x = -vel; break;
 		case 'A': velocity.x = -vel; break;
+		case OF_KEY_LEFT: velocity.x = -vel; break;
+
 		case 'd': velocity.x = vel; break;
 		case 'D': velocity.x = vel; break;
+		case OF_KEY_RIGHT: velocity.x = vel; break;
 
 		case 'q': velocity.y = -vel; break;
 		case 'Q': velocity.y = -vel; break;
@@ -88,8 +91,11 @@ void ofApp::keyPressed(int key)
 
 		case 'w': velocity.z = -vel; break;
 		case 'W': velocity.z = -vel; break;
+		case OF_KEY_UP: velocity.z = -vel; break;
+
 		case 's': velocity.z = vel; break;
 		case 'S': velocity.z = vel; break;
+		case OF_KEY_DOWN: velocity.z = vel; break;
 
 		default: break;
 	}
@@ -102,8 +108,11 @@ void ofApp::keyReleased(int key)
 	{
 		case 'a': velocity.x = 0; break;
 		case 'A': velocity.x = 0; break;
+		case OF_KEY_LEFT: velocity.x = 0; break;
+
 		case 'd': velocity.x = 0; break;
 		case 'D': velocity.x = 0; break;
+		case OF_KEY_RIGHT: velocity.x = 0; break;
 
 		case 'q': velocity.y = 0; break;
 		case 'Q': velocity.y = 0; break;
@@ -112,8 +121,11 @@ void ofApp::keyReleased(int key)
 
 		case 'w': velocity.z = 0; break;
 		case 'W': velocity.z = 0; break;
+		case OF_KEY_UP: velocity.z = 0; break;
+
 		case 's': velocity.z = 0; break;
 		case 'S': velocity.z = 0; break;
+		case OF_KEY_DOWN: velocity.z = 0; break;
 
 		default: break;
 	}
