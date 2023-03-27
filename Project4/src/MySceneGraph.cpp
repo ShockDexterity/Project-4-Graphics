@@ -18,6 +18,9 @@ void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const o
 
 	// Cube mesh is most recent node added
 	auto cubeMeshNode { cubeAnimNode->childNodes.back() };
+	cubeMeshNode->localTransform = scale(vec3(1.0f, 0.25f, 1.0f));
+
+
 
 	// Create joint node
 	/*torusAnimNode->childNodes.emplace_back(new SimpleAnimationNode { 2.0f, vec3(1, 0, 0) });
