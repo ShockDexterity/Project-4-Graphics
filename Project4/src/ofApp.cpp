@@ -16,6 +16,7 @@ void ofApp::setup()
 {
 
 	ofDisableArbTex();
+
 	ofEnableDepthTest();
 
 	cone.load("models/cone.ply");
@@ -23,6 +24,8 @@ void ofApp::setup()
 	cylinder.load("models/cylinder.ply");
 	sphere.load("models/sphere.ply");
 	torus.load("models/torus.ply");
+
+	reloadShaders();
 
 	graph.setup(cone, cube, cylinder, shader);
 }
