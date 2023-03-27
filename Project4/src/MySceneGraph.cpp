@@ -1,21 +1,22 @@
 #include "MySceneGraph.h"
 #include "SimpleDrawNode.h"
 #include "SimpleAnimationNode.h"
+#include "SimpleTranslationNode.h"
 
 void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const ofMesh& cylinderMesh, const ofShader& shader)
 {
 	using namespace glm;
 
 	// Initialize scene graph
-	rootNode.childNodes.emplace_back(new SimpleAnimationNode(1.0f, vec3(1, 1, 1)));
+	rootNode.childNodes.emplace_back(new SimpleTranslationNode(1.0f, vec3(0, 0, -1)));
 
 	// Animated torus node is the most recent node added to the scene graph at this point
 	cubeAnimNode = rootNode.childNodes.back();
 
-	// Attach torus mesh node to the animated node
+	// Attach cube mesh node to the animated node
 	cubeAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, shader });
 
-	// Torus mesh is most recent node added
+	// Cube mesh is most recent node added
 	auto cubeMeshNode { cubeAnimNode->childNodes.back() };
 
 	// Create joint node

@@ -41,6 +41,7 @@ private:
 
 	const glm::vec3 vX { 1, 0, 0 };
 	const glm::vec3 vY { 0, 1, 0 };
+	const glm::vec3 vZ { 0, 0, 1 };
 	glm::vec3 velocity { 0, 0, 0 };
 
 	// Position of the camera in world space
