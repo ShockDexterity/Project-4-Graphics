@@ -14,6 +14,10 @@ void ofApp::reloadShaders()
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+
+	ofDisableArbTex();
+	ofEnableDepthTest();
+
 	cone.load("models/cone.ply");
 	cube.load("models/cube.ply");
 	cylinder.load("models/cylinder.ply");
@@ -34,6 +38,9 @@ void ofApp::update()
 	// update position
 	camera.position += mat3(rotate(cameraHead, vY)) * velocity * dt;
 	camera.rotation = rotate(cameraHead, vY) * rotate(cameraPitch, vX);
+
+	// Update scene graph
+	graph.rootNode.updateSceneGraph(dt);
 }
 
 void ofApp::updateCameraRotation(float dx, float dy)
@@ -54,6 +61,8 @@ void ofApp::draw()
 	const mat4 model {};
 	const mat4 mv { camMatrices.getView() * model };
 	const mat4 mvp { camMatrices.getProj() * mv };
+
+	graph.rootNode.drawSceneGraph(camMatrices);
 }
 
 //--------------------------------------------------------------
