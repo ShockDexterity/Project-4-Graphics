@@ -8,7 +8,7 @@ void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const o
 	using namespace glm;
 
 	// Initialize scene graph
-	rootNode.childNodes.emplace_back(new SimpleTranslationNode(1.0f, vec3(0, 0, 0)));
+	rootNode.childNodes.emplace_back(new SimpleTranslationNode(1.0f, vec3(0, 0, -1)));
 
 	// Animated torus node is the most recent node added to the scene graph at this point
 	cubeAnimNode = rootNode.childNodes.back();
@@ -23,12 +23,25 @@ void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const o
 	cubeAnimNode->childNodes.emplace_back(new SimpleDrawNode{ cubeMesh, shader });
 	
 	auto legMeshNode{ cubeAnimNode->childNodes.back() };
-	legMeshNode->localTransform = scale(vec3(0.25f, 1.0, 0.25f)) * translate(vec3(3.0f, -1.0f, 0.0f));
+	legMeshNode->localTransform = translate(vec3(0.75f, -1.0f, 0.0f)) * scale(vec3(0.25f, 1.0, 0.25f)) ;
 
 	cubeAnimNode->childNodes.emplace_back(new SimpleDrawNode{ cubeMesh, shader });
 
 	auto leg2MeshNode{ cubeAnimNode->childNodes.back() };
-	leg2MeshNode->localTransform = scale(vec3(0.25f, 1.0, 0.25f)) * translate(vec3(-3.0f, -1.0f, 0.0f));
+	leg2MeshNode->localTransform = translate(vec3(-0.75f, -1.0f, 0.0f)) * scale(vec3(0.25f, 1.0, 0.25f));
+
+	legMeshNode->childNodes.emplace_back(new SimpleDrawNode{ coneMesh, shader });
+	auto cone1Mesh{ legMeshNode->childNodes.back() };
+	cone1Mesh->localTransform = translate(vec3(0, -1, 0)) * scale(vec3(1, -1, 1));
+
+
+	leg2MeshNode->childNodes.emplace_back(new SimpleDrawNode{ coneMesh, shader });
+	auto cone2Mesh{ leg2MeshNode->childNodes.back() };
+	cone2Mesh->localTransform = translate(vec3(0, -1, 0)) * scale(vec3(1, -1, 1));
+
+	
+
+	
 	// Create joint node
 	/*torusAnimNode->childNodes.emplace_back(new SimpleAnimationNode { 2.0f, vec3(1, 0, 0) });
 	auto jointNode { torusAnimNode->childNodes.back() };

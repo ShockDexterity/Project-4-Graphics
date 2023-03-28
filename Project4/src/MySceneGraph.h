@@ -11,4 +11,5 @@ public:
 
 private:
 	std::shared_ptr<SceneGraphNode> cubeAnimNode;
+	std::shared_ptr<SceneGraphNode> legAnimNode;
 };
