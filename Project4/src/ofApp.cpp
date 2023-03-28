@@ -50,6 +50,7 @@ void ofApp::updateCameraRotation(float dx, float dy)
 {
 	cameraHead -= dx;
 	cameraPitch -= dy;
+	cameraPitch = glm::clamp(cameraPitch, radians(-89.0f), radians(89.0f));
 }
 
 //--------------------------------------------------------------
@@ -61,9 +62,9 @@ void ofApp::draw()
 	const float aspect { width / height };
 
 	CameraMatrices camMatrices { camera, aspect, 0.1f, 10.0f };
-	const mat4 model {};
+	/*const mat4 model {};
 	const mat4 mv { camMatrices.getView() * model };
-	const mat4 mvp { camMatrices.getProj() * mv };
+	const mat4 mvp { camMatrices.getProj() * mv };*/
 
 	graph.rootNode.drawSceneGraph(camMatrices);
 }
@@ -137,7 +138,9 @@ void ofApp::mouseMoved(int x, int y)
 	if (prevX != 0 && prevY != 0)
 	{
 		//update camera rotation based on mouse movement
-		updateCameraRotation(mouseSensitivity * (x - prevX), mouseSensitivity * (y - prevY));
+		int dx { x - prevX }, dy { y - prevY };
+
+		updateCameraRotation(mouseSensitivity * dx, mouseSensitivity * dy);
 	}
 
 	//remember where the mouse was this frame

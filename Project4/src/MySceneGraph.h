@@ -10,6 +10,6 @@ public:
 	SceneGraphNode rootNode {};
 
 private:
-	std::shared_ptr<SceneGraphNode> cubeAnimNode;
+	std::shared_ptr<SceneGraphNode> translationAnimNode;
 	std::shared_ptr<SceneGraphNode> legAnimNode;
 };
