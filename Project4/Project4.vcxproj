@@ -219,6 +219,10 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\data\shaders\hat.frag" />
+    <None Include="bin\data\shaders\hat.vert" />
+    <None Include="bin\data\shaders\propeller.vert" />
+    <None Include="bin\data\shaders\propeller.frag" />
     <None Include="bin\data\shaders\robot.frag" />
     <None Include="bin\data\shaders\robot.vert" />
   </ItemGroup>

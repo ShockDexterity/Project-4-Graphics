@@ -24,33 +24,37 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
-
+	// meshes
 	ofMesh cone {};
 	ofMesh cube {};
 	ofMesh cylinder {};
 	ofMesh sphere {};
-	// ofMesh torus {};
+	
+	// shaders
+	ofShader hatShader {};
+	ofShader robotShader {};
+	ofShader propellerShader {};
 
-	ofShader shader {};
-
+	// scene graph
 	MySceneGraph graph {};
 
+	// camera stuffs
 	int prevX { 0 };
 	int prevY { 0 };
-	const float mouseSensitivity { 0.02f };
-
-	const glm::vec3 vX { 1, 0, 0 };
-	const glm::vec3 vY { 0, 1, 0 };
-	const glm::vec3 vZ { 0, 0, 1 };
-	glm::vec3 velocity { 0, 0, 0 };
-
-	// Position of the camera in world space
-	Camera camera { glm::vec3(0, 0, 2) };
-
 	float cameraHead { 0 };
 	float cameraPitch { 0 };
+	glm::vec3 velocity { 0, 0, 0 };
+	const float mouseSensitivity { 0.02f };
+	Camera camera { glm::vec3(0.0f, 0.0f, 2.0f) }; // Position of the camera in world space
+
 	void updateCameraRotation(float dx, float dy);
 
+	// constant axes
+	const glm::vec3 xAxis { 1.0f, 0.0f, 0.0f };
+	const glm::vec3 yAxis { 0.0f, 1.0f, 0.0f };
+	const glm::vec3 zAxis { 0.0f, 0.0f, 1.0f };
+
+	// reloading shaders
 	bool shadersNeedReload { true };
 	void reloadShaders();
 };

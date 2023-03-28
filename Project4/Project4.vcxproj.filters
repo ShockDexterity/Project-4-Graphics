@@ -88,5 +88,17 @@
     <None Include="bin\data\shaders\robot.vert">
       <Filter>src</Filter>
     </None>
+    <None Include="bin\data\shaders\hat.vert">
+      <Filter>src</Filter>
+    </None>
+    <None Include="bin\data\shaders\hat.frag">
+      <Filter>src</Filter>
+    </None>
+    <None Include="bin\data\shaders\propeller.vert">
+      <Filter>src</Filter>
+    </None>
+    <None Include="bin\data\shaders\propeller.frag">
+      <Filter>src</Filter>
+    </None>
   </ItemGroup>
 </Project>

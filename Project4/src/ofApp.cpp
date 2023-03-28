@@ -8,26 +8,26 @@ void ofApp::reloadShaders()
 	shadersNeedReload = false;
 
 	// reload shaders
-	shader.load("shaders/robot.vert", "shaders/robot.frag");
+	hatShader.load("shaders/hat.vert", "shaders/hat.frag");
+	robotShader.load("shaders/robot.vert", "shaders/robot.frag");
+	propellerShader.load("shaders/propeller.vert", "shaders/propeller.frag");
 }
 
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-
+	// important
 	ofDisableArbTex();
-
 	ofEnableDepthTest();
 
 	cone.load("models/cone.ply");
 	cube.load("models/cube.ply");
 	cylinder.load("models/cylinder.ply");
 	sphere.load("models/sphere.ply");
-	// torus.load("models/torus.ply");
 
 	reloadShaders();
 
-	graph.setup(cone, cube, cylinder, sphere, shader);
+	graph.setup(cone, cube, cylinder, sphere, hatShader, robotShader, propellerShader);
 }
 
 //--------------------------------------------------------------
@@ -39,8 +39,8 @@ void ofApp::update()
 	const float dt { static_cast<float>(ofGetLastFrameTime()) };
 
 	// update position
-	camera.position += mat3(rotate(cameraHead, vY)) * velocity * dt;
-	camera.rotation = rotate(cameraHead, vY) * rotate(cameraPitch, vX);
+	camera.position += mat3(rotate(cameraHead, yAxis)) * velocity * dt;
+	camera.rotation = rotate(cameraHead, yAxis) * rotate(cameraPitch, xAxis);
 
 	// Update scene graph
 	graph.rootNode.updateSceneGraph(dt);
