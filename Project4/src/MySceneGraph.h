@@ -4,7 +4,7 @@
 class MySceneGraph
 {
 public:
-	void setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const ofMesh& cylinderMesh, const ofShader& shader);
+	void setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const ofMesh& cylinderMesh, const ofMesh& sphereMesh, const ofShader& shader);
 
 	// Root node of the scene graph
 	SceneGraphNode rootNode {};

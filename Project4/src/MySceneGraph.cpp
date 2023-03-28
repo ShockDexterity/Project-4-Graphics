@@ -3,22 +3,27 @@
 #include "SimpleAnimationNode.h"
 #include "SimpleTranslationNode.h"
 
-void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const ofMesh& cylinderMesh, const ofShader& shader)
+void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const ofMesh& cylinderMesh, const ofMesh& sphereMesh, const ofShader& shader)
 {
 	using namespace glm;
 
+	/************************** INIT **************************/
+
 	// Initialize scene graph
-	rootNode.childNodes.emplace_back(new SimpleTranslationNode(1.0f, vec3(0, 0, -1)));
+	rootNode.childNodes.emplace_back(new SimpleTranslationNode(0.0f, vec3(0, 0, -1)));
 
 	// Animated torus node is the most recent node added to the scene graph at this point
 	translationAnimNode = rootNode.childNodes.back();
 
-	// Attach cube mesh node to the animated node
-	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, shader });
 
-	// add head
+	/************************** HEAD **************************/
+
+	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, shader });
 	auto headMeshNode { translationAnimNode->childNodes.back() };
 	headMeshNode->localTransform = scale(vec3(1.0f, 0.25f, 1.0f));
+
+
+	/************************** LEFT LEG **************************/
 
 	// left leg animation node
 	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, shader });
@@ -31,6 +36,9 @@ void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const o
 	upperLeftLegMeshNode->childNodes.emplace_back(new SimpleDrawNode { coneMesh, shader });
 	auto lowerLeftLegMeshNode { upperLeftLegMeshNode->childNodes.back() };
 	lowerLeftLegMeshNode->localTransform = translate(vec3(0, -1, 0)) * scale(vec3(1, -1, 1));
+
+
+	/************************** RIGHT LEG **************************/
 
 	// right leg animation node
 	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, shader });
@@ -45,21 +53,17 @@ void MySceneGraph::setup(const ofMesh& coneMesh, const ofMesh& cubeMesh, const o
 	lowerRightLegMeshNode->localTransform = translate(vec3(0, -1, 0)) * scale(vec3(1, -1, 1));
 
 
+	/************************** HAT **************************/
+
+	// hat sphere
+	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { sphereMesh, shader });
+	auto hatMeshNode { translationAnimNode->childNodes.back() };
+	hatMeshNode->localTransform = translate(vec3(0.0f, 0.25f, 0.0f)) * scale(vec3(1.0f, 0.25f, 1.0f));
+
+	// propellor stem
+	hatMeshNode->childNodes.emplace_back(new SimpleDrawNode { cylinderMesh,shader });
+	auto propellorStemMeshNode { hatMeshNode->childNodes.back() };
+	propellorStemMeshNode->localTransform = scale(vec3(0.125f, 1.5f, 0.125f));
 
 
-	// Create joint node
-	/*torusAnimNode->childNodes.emplace_back(new SimpleAnimationNode { 2.0f, vec3(1, 0, 0) });
-	auto jointNode { torusAnimNode->childNodes.back() };
-	jointNode->localTransform = translate(vec3(1.5f, 0, 0)) * scale(vec3(0.5f));
-	jointNode->childNodes.push_back(torusMeshNode);*/
-
-	// Create joint node
-	/*jointNode->childNodes.emplace_back(new SceneGraphNode());
-	auto staticTranslation { jointNode->childNodes.back() };
-	staticTranslation->localTransform = translate(vec3(1, 0, 0));
-
-	staticTranslation->childNodes.emplace_back(new SimpleAnimationNode { 4.0f, vec3(0, 1, 0) });
-	auto jointNode2 { staticTranslation->childNodes.back() };
-	jointNode2->localTransform = translate(vec3(0.5f, 0, 0)) * scale(vec3(0.5f));
-	jointNode2->childNodes.push_back(torusMeshNode);*/
 }

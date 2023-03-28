@@ -23,11 +23,11 @@ void ofApp::setup()
 	cube.load("models/cube.ply");
 	cylinder.load("models/cylinder.ply");
 	sphere.load("models/sphere.ply");
-	torus.load("models/torus.ply");
+	// torus.load("models/torus.ply");
 
 	reloadShaders();
 
-	graph.setup(cone, cube, cylinder, shader);
+	graph.setup(cone, cube, cylinder, sphere, shader);
 }
 
 //--------------------------------------------------------------

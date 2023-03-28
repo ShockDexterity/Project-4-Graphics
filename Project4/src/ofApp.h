@@ -29,7 +29,7 @@ private:
 	ofMesh cube {};
 	ofMesh cylinder {};
 	ofMesh sphere {};
-	ofMesh torus {};
+	// ofMesh torus {};
 
 	ofShader shader {};
 
