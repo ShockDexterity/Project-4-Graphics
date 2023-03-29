@@ -1,5 +1,5 @@
 #include "MySceneGraph.h"
-#include "SimpleDrawNode.h"
+//#include "SimpleDrawNode.h"
 #include "SimpleAnimationNode.h"
 #include "SimpleTranslationNode.h"
 #include "LitDrawNode.h"
@@ -21,8 +21,11 @@ void MySceneGraph::setup(
 	//lighting.dirLight.direction = vec3(0.25, -1, -0.5);
 	//lighting.dirLight.color = vec3(0.9, 0.9, 0.75);
 	//lighting.dirLight.intensity = 1;
-	//lighting.ambientLight = vec3(0.1, 0.1, 0.25);
-	//std::shared_ptr<LitDrawNode> cubeMeshNode{ new LitDrawNode { cubeMesh, robotShader, lighting } };
+	lighting.ambientLight = vec3(0.1, 0.1, 0.25);
+	std::shared_ptr<LitDrawNode> cubeMeshNode{ new LitDrawNode { cubeMesh, robotShader, lighting } };
+	std::shared_ptr<LitDrawNode> coneMeshNode{ new LitDrawNode {coneMesh, robotShader, lighting} };
+
+	cubeMeshNode->meshColor = vec3(0.5);
 
 	// Initialize scene graph
 	rootNode.childNodes.emplace_back(new SimpleTranslationNode(0.0f, -zAxis));
@@ -33,39 +36,46 @@ void MySceneGraph::setup(
 
 	/************************** HEAD **************************/
 
-	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, robotShader });
+	translationAnimNode->childNodes.emplace_back(new SceneGraphNode {});
+	//translationAnimNode->childNodes.push_back(cubeMeshNode);
 	auto headMeshNode { translationAnimNode->childNodes.back() };
 	headMeshNode->localTransform = scale(vec3(1.0f, 0.25f, 1.0f));
+	headMeshNode->childNodes.push_back(cubeMeshNode);
 
 
 	/************************** LEFT LEG **************************/
 
 	// left leg animation node
-	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, robotShader });
+	translationAnimNode->childNodes.emplace_back(new SceneGraphNode {});
 
 	// left upper leg
 	auto upperLeftLegMeshNode { translationAnimNode->childNodes.back() };
 	upperLeftLegMeshNode->localTransform = translate(vec3(0.75f, -1.0f, 0.0f)) * scale(vec3(0.25f, 1.0, 0.25f));
+	upperLeftLegMeshNode->childNodes.push_back(cubeMeshNode);
 
 	// left lower leg
-	upperLeftLegMeshNode->childNodes.emplace_back(new SimpleDrawNode { coneMesh, robotShader });
+	upperLeftLegMeshNode->childNodes.emplace_back(new SceneGraphNode {});
 	auto lowerLeftLegMeshNode { upperLeftLegMeshNode->childNodes.back() };
 	lowerLeftLegMeshNode->localTransform = translate(vec3(0, -1, 0)) * scale(vec3(1, -1, 1));
+	lowerLeftLegMeshNode->childNodes.push_back(coneMeshNode);
 
 
 	/************************** RIGHT LEG **************************/
 
 	// right leg animation node
-	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, robotShader });
+	translationAnimNode->childNodes.emplace_back(new SceneGraphNode { });
 
 	// right upper leg
 	auto upperRightLegMeshNode { translationAnimNode->childNodes.back() };
 	upperRightLegMeshNode->localTransform = translate(vec3(-0.75f, -1.0f, 0.0f)) * scale(vec3(0.25f, 1.0, 0.25f));
+	upperRightLegMeshNode->childNodes.push_back(cubeMeshNode);
+
 
 	// right lower leg
 	upperRightLegMeshNode->childNodes.emplace_back(new SimpleDrawNode { coneMesh, robotShader });
 	auto lowerRightLegMeshNode { upperRightLegMeshNode->childNodes.back() };
 	lowerRightLegMeshNode->localTransform = translate(vec3(0, -1, 0)) * scale(vec3(1, -1, 1));
+	lowerRightLegMeshNode->childNodes.push_back(coneMeshNode);
 
 
 	/************************** HAT **************************/
