@@ -15,7 +15,7 @@ void main()
     vec2 v = vec2(xCoord, zCoord);
     vec2 o = vec2(1, 0);
 
-    float cosine = dot(v, o) / (v.length() * o.length());
+    float cosine = dot(v, o) / (length(v) * length(o));
 
     if (between(cosine, 0.5, 1.0))
     {

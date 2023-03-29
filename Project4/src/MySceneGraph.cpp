@@ -2,6 +2,7 @@
 #include "SimpleDrawNode.h"
 #include "SimpleAnimationNode.h"
 #include "SimpleTranslationNode.h"
+#include "LitDrawNode.h"
 
 void MySceneGraph::setup(
 	const ofMesh& coneMesh,
@@ -16,6 +17,12 @@ void MySceneGraph::setup(
 	using namespace glm;
 
 	/************************** INIT **************************/
+
+	//lighting.dirLight.direction = vec3(0.25, -1, -0.5);
+	//lighting.dirLight.color = vec3(0.9, 0.9, 0.75);
+	//lighting.dirLight.intensity = 1;
+	//lighting.ambientLight = vec3(0.1, 0.1, 0.25);
+	//std::shared_ptr<LitDrawNode> cubeMeshNode{ new LitDrawNode { cubeMesh, robotShader, lighting } };
 
 	// Initialize scene graph
 	rootNode.childNodes.emplace_back(new SimpleTranslationNode(0.0f, -zAxis));

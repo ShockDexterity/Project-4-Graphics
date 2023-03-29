@@ -16,12 +16,12 @@ void LitDrawNode::drawNode(const CameraMatrices& camera, const glm::mat4& model)
 	shader.setUniformMatrix3f("normalMatrix", transpose(inverse(model)));
 	shader.setUniform3f("meshColor", meshColor);
 	shader.setUniform3f("ambientColor", sceneLighting.ambientLight);
-	shader.setUniform3f("dirLightColor", sceneLighting.dirLight.getColorIntensity());
+	/*shader.setUniform3f("dirLightColor", sceneLighting.dirLight.getColorIntensity());
 	shader.setUniform3f("dirLightDir", sceneLighting.dirLight.getDirectionToLight());
 	shader.setUniform3f("spotLightColor", sceneLighting.spotLight.getColorIntensity());
 	shader.setUniform3f("spotLightConeDir", sceneLighting.spotLight.direction);
 	shader.setUniform3f("spotLightPos", sceneLighting.spotLight.position);
-	shader.setUniform1f("spotLightCutoff", sceneLighting.spotLight.cutoff);
+	shader.setUniform1f("spotLightCutoff", sceneLighting.spotLight.cutoff);*/
 	mesh.draw(); // draw mesh
 	shader.end(); // done with the shader
 }
