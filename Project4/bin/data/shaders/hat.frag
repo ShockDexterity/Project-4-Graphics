@@ -42,7 +42,7 @@ vec4 getColor(float cosine)
         else
         {
             // v 300->360
-            return vec4(59.0, 39.0, 51.0, 255.0) / 255.0;
+            return vec4(109.0, 55.0, 136.0, 255.0) / 255.0;
         }
     }
 
