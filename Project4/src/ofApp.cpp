@@ -57,11 +57,11 @@ void ofApp::updateCameraRotation(float dx, float dy)
 void ofApp::draw()
 {
 	// aspect ratio
-	const float width{ static_cast<float>(ofGetViewportWidth()) };
-	const float height{ static_cast<float>(ofGetViewportHeight()) };
-	const float aspect{ width / height };
+	const float width { static_cast<float>(ofGetViewportWidth()) };
+	const float height { static_cast<float>(ofGetViewportHeight()) };
+	const float aspect { width / height };
 
-	CameraMatrices camMatrices{ camera, aspect, 0.1f, 10.0f };
+	CameraMatrices camMatrices { camera, aspect, 0.1f, 10.0f };
 	/*const mat4 model {};
 	const mat4 mv { camMatrices.getView() * model };
 	const mat4 mvp { camMatrices.getProj() * mv };*/
@@ -150,48 +150,32 @@ void ofApp::mouseMoved(int x, int y)
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button)
-{
-
-}
+{ }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button)
-{
-
-}
+{ }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button)
-{
-
-}
+{ }
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y)
-{
-
-}
+{ }
 
 //--------------------------------------------------------------
 void ofApp::mouseExited(int x, int y)
-{
-
-}
+{ }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h)
-{
-
-}
+{ }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg)
-{
-
-}
+{ }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo)
-{
-
-}
+{ }

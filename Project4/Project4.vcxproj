@@ -187,6 +187,7 @@
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\SimpleAnimationNode.cpp" />
     <ClCompile Include="src\SimpleDrawNode.cpp" />
+    <ClCompile Include="src\SimpleJointAnimNode.cpp" />
     <ClCompile Include="src\SimpleTranslationNode.cpp" />
     <ClCompile Include="src\SpotLightNode.cpp" />
   </ItemGroup>
@@ -202,6 +203,7 @@
     <ClInclude Include="src\SceneGraphNode.h" />
     <ClInclude Include="src\SimpleAnimationNode.h" />
     <ClInclude Include="src\SimpleDrawNode.h" />
+    <ClInclude Include="src\SimpleJointAnimNode.h" />
     <ClInclude Include="src\SimpleTranslationNode.h" />
     <ClInclude Include="src\SpotLight.h" />
     <ClInclude Include="src\SpotLightNode.h" />

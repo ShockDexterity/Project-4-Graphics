@@ -28,6 +28,9 @@
     <ClCompile Include="src\SimpleTranslationNode.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\SimpleJointAnimNode.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -75,6 +78,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\SimpleTranslationNode.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SimpleJointAnimNode.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

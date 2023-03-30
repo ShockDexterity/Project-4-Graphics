@@ -1,6 +1,7 @@
 #include "MySceneGraph.h"
 //#include "SimpleDrawNode.h"
 #include "SimpleAnimationNode.h"
+#include "SimpleJointAnimNode.h"
 #include "SimpleTranslationNode.h"
 #include "LitDrawNode.h"
 
@@ -22,8 +23,8 @@ void MySceneGraph::setup(
 	//lighting.dirLight.color = vec3(0.9, 0.9, 0.75);
 	//lighting.dirLight.intensity = 1;
 	lighting.ambientLight = vec3(0.1, 0.1, 0.25);
-	std::shared_ptr<LitDrawNode> cubeMeshNode{ new LitDrawNode { cubeMesh, robotShader, lighting } };
-	std::shared_ptr<LitDrawNode> coneMeshNode{ new LitDrawNode {coneMesh, robotShader, lighting} };
+	std::shared_ptr<LitDrawNode> cubeMeshNode { new LitDrawNode { cubeMesh, robotShader, lighting } };
+	std::shared_ptr<LitDrawNode> coneMeshNode { new LitDrawNode { coneMesh, robotShader, lighting } };
 
 	cubeMeshNode->meshColor = vec3(0.5);
 
@@ -37,7 +38,6 @@ void MySceneGraph::setup(
 	/************************** HEAD **************************/
 
 	translationAnimNode->childNodes.emplace_back(new SceneGraphNode {});
-	//translationAnimNode->childNodes.push_back(cubeMeshNode);
 	auto headMeshNode { translationAnimNode->childNodes.back() };
 	headMeshNode->localTransform = scale(vec3(1.0f, 0.25f, 1.0f));
 	headMeshNode->childNodes.push_back(cubeMeshNode);
@@ -45,13 +45,17 @@ void MySceneGraph::setup(
 
 	/************************** LEFT LEG **************************/
 
+	float legSpeed { 1.0f };
+
 	// left leg animation node
-	translationAnimNode->childNodes.emplace_back(new SceneGraphNode {});
+	translationAnimNode->childNodes.emplace_back(new SimpleJointAnimNode { legSpeed, xAxis });
 
 	// left upper leg
 	auto upperLeftLegMeshNode { translationAnimNode->childNodes.back() };
 	upperLeftLegMeshNode->localTransform = translate(vec3(0.75f, -1.0f, 0.0f)) * scale(vec3(0.25f, 1.0, 0.25f));
 	upperLeftLegMeshNode->childNodes.push_back(cubeMeshNode);
+
+	
 
 	// left lower leg
 	upperLeftLegMeshNode->childNodes.emplace_back(new SceneGraphNode {});
@@ -63,7 +67,7 @@ void MySceneGraph::setup(
 	/************************** RIGHT LEG **************************/
 
 	// right leg animation node
-	translationAnimNode->childNodes.emplace_back(new SceneGraphNode { });
+	translationAnimNode->childNodes.emplace_back(new SimpleJointAnimNode { -legSpeed, xAxis });
 
 	// right upper leg
 	auto upperRightLegMeshNode { translationAnimNode->childNodes.back() };
@@ -81,9 +85,9 @@ void MySceneGraph::setup(
 	/************************** HAT **************************/
 
 	// hat sphere
-	translationAnimNode->childNodes.emplace_back(new SimpleDrawNode { sphereMesh, hatShader });
-	auto hatMeshNode { translationAnimNode->childNodes.back() };
-	hatMeshNode->localTransform = translate(vec3(0.0f, 0.25f, 0.0f)) * scale(vec3(1.0f, 0.25f, 1.0f));
+	headMeshNode->childNodes.emplace_back(new SimpleDrawNode { sphereMesh, hatShader });
+	auto hatMeshNode { headMeshNode->childNodes.back() };
+	hatMeshNode->localTransform = translate(vec3(0.0f, 1.0f, 0.0f)) * scale(vec3(0.95f, 0.5f, 0.95f));
 
 	// propeller stem
 	hatMeshNode->childNodes.emplace_back(new SimpleDrawNode { cylinderMesh, propellerShader });

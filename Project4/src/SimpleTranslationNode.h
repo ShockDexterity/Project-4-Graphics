@@ -10,6 +10,6 @@ protected:
 	virtual void updateNode(float dt, const glm::mat4& model) override;
 
 private:
-	float speed;
-	glm::vec3 direction;
+	float speed {};
+	glm::vec3 direction {};
 };
