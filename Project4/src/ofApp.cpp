@@ -44,6 +44,7 @@ void ofApp::update()
 
 	// Update scene graph
 	graph.rootNode.updateSceneGraph(dt);
+	graph.lighting.spotLight = graph.spotLightNode->spotLight;
 }
 
 void ofApp::updateCameraRotation(float dx, float dy)
