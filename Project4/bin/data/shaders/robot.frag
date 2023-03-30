@@ -10,6 +10,9 @@ uniform vec3 lightColor;
 uniform vec3 meshColor;
 uniform vec3 ambientColor;
 
+uniform vec3 dirLightDir;
+uniform vec3 dirLightColor;
+
 //uniform float alpha0;
 //uniform float alpha1;
 
@@ -17,14 +20,18 @@ uniform vec3 ambientColor;
 
 void main()
 {
+	vec3 tempColor;
 	vec3 normal = normalize(fragNormal);
 	float nDotL = max(0, dot(normal, lightDir));
+
+	tempColor += (dirLightDir + dirLightColor);
 
 	//float alpha = smoothstep(alpha0, alpha1, length(fragCamSpace));
 
 	vec3 irradiance = ambientColor + lightColor + nDotL;
 	vec3 linearColor = meshColor * irradiance;
-	outColor = vec4(pow(linearColor, vec3(1.0/2.2)), 1);
+	tempColor += pow(tempColor, vec3(1.0/2.2));
+	outColor = vec4(tempColor, 1);
 
 //    vec3 normal = normalize(fragNormal);
 //    outColor = vec4(normal * 0.5 + vec3(0.5), 1.0);

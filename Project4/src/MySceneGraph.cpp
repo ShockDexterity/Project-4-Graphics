@@ -19,10 +19,10 @@ void MySceneGraph::setup(
 
 	/************************** INIT **************************/
 
-	//lighting.dirLight.direction = vec3(0.25, -1, -0.5);
-	//lighting.dirLight.color = vec3(0.9, 0.9, 0.75);
-	//lighting.dirLight.intensity = 1;
-	lighting.ambientLight = vec3(0.1, 0.1, 0.25);
+	lighting.dirLight.direction = vec3(0.25, -1, -0.5);
+	lighting.dirLight.color = vec3(1, 0.1, 0.1);
+	lighting.dirLight.intensity = 1;
+	lighting.ambientLight = vec3(1, 0.1, 0.1);
 	std::shared_ptr<LitDrawNode> cubeMeshNode { new LitDrawNode { cubeMesh, robotShader, lighting } };
 	std::shared_ptr<LitDrawNode> coneMeshNode { new LitDrawNode { coneMesh, robotShader, lighting } };
 
