@@ -4,7 +4,7 @@
 class SimpleJointAnimNode : public SceneGraphNode
 { 
 public: 
-	SimpleJointAnimNode(float rotationSpeed, glm::vec3 rotationAxis);
+	SimpleJointAnimNode(float rotationSpeed, const glm::vec3& rotationAxis);
 
 protected:
 	virtual void updateNode(float dt, const glm::mat4& model) override;

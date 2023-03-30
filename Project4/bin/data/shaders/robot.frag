@@ -24,7 +24,7 @@ void main()
 	vec3 normal = normalize(fragNormal);
 	float nDotL = max(0, dot(normal, lightDir));
 
-	tempColor += (dirLightDir + dirLightColor);
+	tempColor += (dirLightDir * dirLightColor);
 
 	//float alpha = smoothstep(alpha0, alpha1, length(fragCamSpace));
 

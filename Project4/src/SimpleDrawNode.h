@@ -9,7 +9,7 @@ public:
 	SimpleDrawNode(const ofMesh& mesh, const ofShader& shader);
 
 	// Override the base class's draw function
-	void drawNode(const CameraMatrices& camera, const glm::mat4& model) const;
+	void drawNode(const CameraMatrices& camera, const glm::mat4& model) const override;
 
 protected:
 	// The mesh to be drawn (reference to the resource's "home")
