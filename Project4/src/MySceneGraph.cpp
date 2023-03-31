@@ -98,10 +98,13 @@ void MySceneGraph::setup(
 	propellerStemMeshNode->childNodes.push_back(cylinderMeshNode);
 
 	// point light on top of stem
+
+	//READ ME: The point light shows up as a green streak on the propeller blades
 	pointLightNode = std::shared_ptr<PointLightNode> { new PointLightNode {} };
 	propellerStemMeshNode->childNodes.push_back(pointLightNode);
-	pointLightNode->localTransform = translate(vec3(0.0f, -10.0f, 0.0f));
-	pointLightNode->pointLight.color = vec3(1.0f);
+	pointLightNode->localTransform = translate(vec3(0.0f, 1.5f, 0.0f));
+	pointLightNode->pointLight.color = vec3(0,1,0);
+	pointLightNode->pointLight.intensity = 0.1f;
 
 	// blades
 	propellerStemMeshNode->childNodes.emplace_back(new SimpleAnimationNode { 2.0f, yAxis });
@@ -109,7 +112,7 @@ void MySceneGraph::setup(
 
 	for (int i { 0 }; i < 8; ++i)
 	{
-		propellerAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, propellerShader });
+		propellerAnimNode->childNodes.emplace_back(new SimpleDrawNode { cubeMesh, robotShader });
 		const auto blade { propellerAnimNode->childNodes.back() };
 
 		blade->localTransform = scale(vec3(0.2f, 0.005f, 3.5f)) * blade->localTransform;
