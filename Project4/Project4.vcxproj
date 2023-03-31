@@ -185,6 +185,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MySceneGraph.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\PointLightNode.cpp" />
     <ClCompile Include="src\SimpleAnimationNode.cpp" />
     <ClCompile Include="src\SimpleDrawNode.cpp" />
     <ClCompile Include="src\SimpleJointAnimNode.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="src\MySceneGraph.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\PointLight.h" />
+    <ClInclude Include="src\PointLightNode.h" />
     <ClInclude Include="src\SceneGraphNode.h" />
     <ClInclude Include="src\SimpleAnimationNode.h" />
     <ClInclude Include="src\SimpleDrawNode.h" />

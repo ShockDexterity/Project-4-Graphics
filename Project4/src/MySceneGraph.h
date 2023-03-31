@@ -2,6 +2,7 @@
 #include "SceneGraphNode.h"
 #include "Lighting.h"
 #include "SpotLightNode.h"
+#include "PointLightNode.h"
 
 class MySceneGraph
 {
@@ -17,10 +18,11 @@ public:
 	);
 
 	// Root node of the scene graph
-	SceneGraphNode rootNode {};
 	Lighting lighting {};
+	SceneGraphNode rootNode {};
 	std::shared_ptr<SpotLightNode> stillSpotLightNode {};
 	std::shared_ptr<SpotLightNode> animSpotLightNode {};
+	std::shared_ptr<PointLightNode> pointLightNode {};
 
 private:
 	const glm::vec3 xAxis { 1.0f, 0.0f, 0.0f };

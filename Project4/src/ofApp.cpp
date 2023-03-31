@@ -53,8 +53,7 @@ void ofApp::update()
 	{
 		graph.lighting.spotLight = graph.animSpotLightNode->spotLight;
 	}
-	//if (spotlightsNeedToggle) { toggleSpotLights(); }
-
+	graph.lighting.pointLight = graph.pointLightNode->pointLight;
 }
 
 void ofApp::updateCameraRotation(const float dx, const float dy)

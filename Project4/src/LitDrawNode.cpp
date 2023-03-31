@@ -8,7 +8,7 @@ void LitDrawNode::drawNode(const CameraMatrices& camera, const glm::mat4& model)
 {
 	using namespace glm;
 
-	mat4 mvp { camera.getProj() * camera.getView() * model };
+	const mat4 mvp { camera.getProj() * camera.getView() * model };
 
 	shader.begin(); // start using the shader
 	shader.setUniformMatrix4f("mvp", mvp);
@@ -22,6 +22,9 @@ void LitDrawNode::drawNode(const CameraMatrices& camera, const glm::mat4& model)
 	shader.setUniform3f("spotLightConeDir", sceneLighting.spotLight.direction);
 	shader.setUniform3f("spotLightPos", sceneLighting.spotLight.position);
 	shader.setUniform1f("spotLightCutoff", sceneLighting.spotLight.cutoff);
+	shader.setUniform3f("pointLightColor", sceneLighting.pointLight.getColorIntensity());
+	shader.setUniform3f("pointLightPos", sceneLighting.pointLight.position);
+
 	mesh.draw(); // draw mesh
 	shader.end(); // done with the shader
 }

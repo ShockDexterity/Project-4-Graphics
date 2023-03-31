@@ -97,11 +97,15 @@ void MySceneGraph::setup(
 	propellerStemMeshNode->localTransform = scale(vec3(0.125f, 1.5f, 0.125f));
 	propellerStemMeshNode->childNodes.push_back(cylinderMeshNode);
 
+	// point light on top of stem
+	pointLightNode = std::shared_ptr<PointLightNode> { new PointLightNode {} };
+	propellerStemMeshNode->childNodes.push_back(pointLightNode);
+	pointLightNode->localTransform = translate(vec3(0.0f, -10.0f, 0.0f));
+	pointLightNode->pointLight.color = vec3(1.0f);
 
 	// blades
 	propellerStemMeshNode->childNodes.emplace_back(new SimpleAnimationNode { 2.0f, yAxis });
 	const auto propellerAnimNode { propellerStemMeshNode->childNodes.back() };
-
 
 	for (int i { 0 }; i < 8; ++i)
 	{
