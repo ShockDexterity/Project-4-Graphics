@@ -25,13 +25,13 @@ void MySceneGraph::setup(
 	lighting.ambientLight = vec3(1, 0.1, 0.1);
 	const std::shared_ptr<LitDrawNode> cubeMeshNode { new LitDrawNode { cubeMesh, robotShader, lighting } };
 	const std::shared_ptr<LitDrawNode> coneMeshNode { new LitDrawNode { coneMesh, robotShader, lighting } };
-	const std::shared_ptr<LitDrawNode> cylinderMeshNode{ new LitDrawNode { cylinderMesh, propellerShader, lighting } };
+	const std::shared_ptr<LitDrawNode> cylinderMeshNode { new LitDrawNode { cylinderMesh, propellerShader, lighting } };
 
 	cubeMeshNode->meshColor = vec3(0.5);
 	cylinderMeshNode->meshColor = vec3(vec3(192.0) / 255.0);
 
 	// Initialize scene graph
-	rootNode.childNodes.emplace_back(new SimpleTranslationNode(0.0f, -zAxis));
+	rootNode.childNodes.emplace_back(new SimpleTranslationNode(1.0f, -zAxis));
 
 	// Animated torus node is the most recent node added to the scene graph at this point
 	const auto translationAnimNode { rootNode.childNodes.back() };
@@ -57,7 +57,7 @@ void MySceneGraph::setup(
 	upperLeftLegMeshNode->localTransform = translate(vec3(0.75f, -1.0f, 0)) * scale(vec3(0.25f, 1.0, 0.25f));
 	upperLeftLegMeshNode->childNodes.push_back(cubeMeshNode);
 
-	
+
 
 	// left lower leg
 	upperLeftLegMeshNode->childNodes.emplace_back(new SceneGraphNode {});
@@ -92,7 +92,7 @@ void MySceneGraph::setup(
 	hatMeshNode->localTransform = translate(vec3(0.0f, 1.0f, 0.0f)) * scale(vec3(0.95f, 0.5f, 0.95f));
 
 	// propeller stem
-	hatMeshNode->childNodes.emplace_back(new SceneGraphNode{});
+	hatMeshNode->childNodes.emplace_back(new SceneGraphNode {});
 	const auto propellerStemMeshNode { hatMeshNode->childNodes.back() };
 	propellerStemMeshNode->localTransform = scale(vec3(0.125f, 1.5f, 0.125f));
 	propellerStemMeshNode->childNodes.push_back(cylinderMeshNode);
@@ -114,28 +114,32 @@ void MySceneGraph::setup(
 		blade->localTransform = rotate(radians(45.0f * i), yAxis) * blade->localTransform;
 	}
 
-	/************************** SPOTLIGHT **************************/
-	spotLightNode = std::shared_ptr<SpotLightNode>{ new SpotLightNode{} };
-	headMeshNode->childNodes.push_back(spotLightNode);
-	spotLightNode->localTransform = translate(vec3(0, 0, 2));
-	spotLightNode->spotLight.cutoff = cos(radians(60.0f /* degrees */));
-	spotLightNode->spotLight.color = vec3(0, 0, 1);
-	spotLightNode->spotLight.intensity = 10;
+	/************************** SPOTLIGHTS **************************/
+
+	stillSpotLightNode = std::shared_ptr<SpotLightNode> { new SpotLightNode {} };
+	headMeshNode->childNodes.push_back(stillSpotLightNode);
+	stillSpotLightNode->localTransform = translate(vec3(0, 0, 2));
+	stillSpotLightNode->spotLight.cutoff = cos(radians(45.0f /* degrees */));
+	stillSpotLightNode->spotLight.color = vec3(0, 0, 1);
+	stillSpotLightNode->spotLight.intensity = 10;
 
 	//animated spotlight
 
-	animSpotLightNode = std::shared_ptr<SpotLightNode>{ new SpotLightNode {} };
-	headMeshNode->childNodes.emplace_back(new SimpleAnimationNode{ 1.0f, yAxis });
-	auto spotLightMesh{ headMeshNode->childNodes.back() };
-	//spotLightMesh->localTransform = translate(vec3(0, 0, 2));
-	//spotLightMesh->childNodes.push_back(cubeMeshNode);
-	spotLightMesh->childNodes.push_back(animSpotLightNode);
-	animSpotLightNode->localTransform = translate(vec3(0, 0, 2));
-	animSpotLightNode->spotLight.cutoff = cos(radians(60.f));
+	// make new animation
+	headMeshNode->childNodes.emplace_back(new SimpleAnimationNode { 2.0f, yAxis });
+
+	// get anim node
+	const auto animSpotLight { headMeshNode->childNodes.back() };
+
+	// make new spotlight
+	animSpotLightNode = std::shared_ptr<SpotLightNode> { new SpotLightNode {} };
+
+	// make spotlight child of animation
+	animSpotLight->childNodes.push_back(animSpotLightNode);
+
+	animSpotLightNode->localTransform = rotate(radians(180.0f), yAxis);
+	animSpotLightNode->localTransform = translate(vec3(0, 0, -2)) * animSpotLightNode->localTransform;
+	animSpotLightNode->spotLight.cutoff = cos(radians(30.0f /* degrees */));
 	animSpotLightNode->spotLight.color = vec3(1, 1, 1);
 	animSpotLightNode->spotLight.intensity = 10;
-
-
-
-
 }

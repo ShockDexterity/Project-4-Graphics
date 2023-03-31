@@ -29,7 +29,7 @@ private:
 	ofMesh cube {};
 	ofMesh cylinder {};
 	ofMesh sphere {};
-	
+
 	// shaders
 	ofShader hatShader {};
 	ofShader robotShader {};
@@ -57,4 +57,8 @@ private:
 	// reloading shaders
 	bool shadersNeedReload { true };
 	void reloadShaders();
+
+	//bool spotlightsNeedToggle { false };
+	bool isStill { true };
+	//void toggleSpotLights();
 };

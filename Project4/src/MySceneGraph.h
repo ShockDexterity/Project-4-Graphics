@@ -18,9 +18,9 @@ public:
 
 	// Root node of the scene graph
 	SceneGraphNode rootNode {};
-	Lighting lighting{};
-	std::shared_ptr<SpotLightNode> spotLightNode{}; 
-	std::shared_ptr<SpotLightNode> animSpotLightNode{};
+	Lighting lighting {};
+	std::shared_ptr<SpotLightNode> stillSpotLightNode {};
+	std::shared_ptr<SpotLightNode> animSpotLightNode {};
 
 private:
 	const glm::vec3 xAxis { 1.0f, 0.0f, 0.0f };
