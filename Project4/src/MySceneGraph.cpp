@@ -52,7 +52,7 @@ void MySceneGraph::setup(
 
 	// left upper leg
 	const auto upperLeftLegMeshNode { translationAnimNode->childNodes.back() };
-	upperLeftLegMeshNode->localTransform = translate(vec3(0.75f, -1.0f, 0.0f)) * scale(vec3(0.25f, 1.0, 0.25f));
+	upperLeftLegMeshNode->localTransform = translate(vec3(0.75f, -1.0f, 0)) * scale(vec3(0.25f, 1.0, 0.25f));
 	upperLeftLegMeshNode->childNodes.push_back(cubeMeshNode);
 
 	
@@ -115,5 +115,5 @@ void MySceneGraph::setup(
 	spotLightNode->localTransform = translate(vec3(0, 0, 2));
 	spotLightNode->spotLight.cutoff = cos(radians(10.0f /* degrees */));
 	spotLightNode->spotLight.color = vec3(1, 1, 0.5);
-	spotLightNode->spotLight.intensity = 5;
+	spotLightNode->spotLight.intensity = 3;
 }
