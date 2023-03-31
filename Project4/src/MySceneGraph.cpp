@@ -121,4 +121,21 @@ void MySceneGraph::setup(
 	spotLightNode->spotLight.cutoff = cos(radians(60.0f /* degrees */));
 	spotLightNode->spotLight.color = vec3(0, 0, 1);
 	spotLightNode->spotLight.intensity = 10;
+
+	//animated spotlight
+
+	animSpotLightNode = std::shared_ptr<SpotLightNode>{ new SpotLightNode {} };
+	headMeshNode->childNodes.emplace_back(new SimpleAnimationNode{ 1.0f, yAxis });
+	auto spotLightMesh{ headMeshNode->childNodes.back() };
+	//spotLightMesh->localTransform = translate(vec3(0, 0, 2));
+	//spotLightMesh->childNodes.push_back(cubeMeshNode);
+	spotLightMesh->childNodes.push_back(animSpotLightNode);
+	animSpotLightNode->localTransform = translate(vec3(0, 0, 2));
+	animSpotLightNode->spotLight.cutoff = cos(radians(60.f));
+	animSpotLightNode->spotLight.color = vec3(1, 1, 1);
+	animSpotLightNode->spotLight.intensity = 10;
+
+
+
+
 }
