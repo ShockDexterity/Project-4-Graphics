@@ -25,8 +25,10 @@ void MySceneGraph::setup(
 	lighting.ambientLight = vec3(1, 0.1, 0.1);
 	const std::shared_ptr<LitDrawNode> cubeMeshNode { new LitDrawNode { cubeMesh, robotShader, lighting } };
 	const std::shared_ptr<LitDrawNode> coneMeshNode { new LitDrawNode { coneMesh, robotShader, lighting } };
+	const std::shared_ptr<LitDrawNode> cylinderMeshNode{ new LitDrawNode { cylinderMesh, propellerShader, lighting } };
 
 	cubeMeshNode->meshColor = vec3(0.5);
+	cylinderMeshNode->meshColor = vec3(vec3(192.0) / 255.0);
 
 	// Initialize scene graph
 	rootNode.childNodes.emplace_back(new SimpleTranslationNode(0.0f, -zAxis));
@@ -90,13 +92,16 @@ void MySceneGraph::setup(
 	hatMeshNode->localTransform = translate(vec3(0.0f, 1.0f, 0.0f)) * scale(vec3(0.95f, 0.5f, 0.95f));
 
 	// propeller stem
-	hatMeshNode->childNodes.emplace_back(new SimpleDrawNode { cylinderMesh, propellerShader });
+	hatMeshNode->childNodes.emplace_back(new SceneGraphNode{});
 	const auto propellerStemMeshNode { hatMeshNode->childNodes.back() };
 	propellerStemMeshNode->localTransform = scale(vec3(0.125f, 1.5f, 0.125f));
+	propellerStemMeshNode->childNodes.push_back(cylinderMeshNode);
+
 
 	// blades
 	propellerStemMeshNode->childNodes.emplace_back(new SimpleAnimationNode { 2.0f, yAxis });
 	const auto propellerAnimNode { propellerStemMeshNode->childNodes.back() };
+
 
 	for (int i { 0 }; i < 8; ++i)
 	{
@@ -112,8 +117,8 @@ void MySceneGraph::setup(
 	/************************** SPOTLIGHT **************************/
 	spotLightNode = std::shared_ptr<SpotLightNode>{ new SpotLightNode{} };
 	headMeshNode->childNodes.push_back(spotLightNode);
-	spotLightNode->localTransform = translate(vec3(0, .5, .1));
-	spotLightNode->spotLight.cutoff = .5; // cos(radians(30.0f /* degrees */));
+	spotLightNode->localTransform = translate(vec3(0, 0, 2));
+	spotLightNode->spotLight.cutoff = cos(radians(60.0f /* degrees */));
 	spotLightNode->spotLight.color = vec3(0, 0, 1);
 	spotLightNode->spotLight.intensity = 10;
 }
