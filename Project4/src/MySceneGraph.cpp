@@ -112,8 +112,8 @@ void MySceneGraph::setup(
 	/************************** SPOTLIGHT **************************/
 	spotLightNode = std::shared_ptr<SpotLightNode>{ new SpotLightNode{} };
 	rootNode.childNodes.push_back(spotLightNode);
-	spotLightNode->localTransform = translate(vec3(0, 0, -5));
-	spotLightNode->spotLight.cutoff = cos(radians(30.0f /* degrees */));
+	spotLightNode->localTransform = translate(vec3(0, 0, 2));
+	spotLightNode->spotLight.cutoff = cos(radians(10.0f /* degrees */));
 	spotLightNode->spotLight.color = vec3(1, 1, 0.5);
 	spotLightNode->spotLight.intensity = 5;
 }
