@@ -57,8 +57,6 @@ private:
 	// reloading shaders
 	bool shadersNeedReload { true };
 	void reloadShaders();
-
-	//bool spotlightsNeedToggle { false };
+	
 	bool isStill { true };
-	//void toggleSpotLights();
 };

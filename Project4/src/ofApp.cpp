@@ -13,20 +13,6 @@ void ofApp::reloadShaders()
 	propellerShader.load("shaders/propeller.vert", "shaders/propeller.frag");
 }
 
-//void ofApp::toggleSpotLights()
-//{
-//	spotlightsNeedToggle = false;
-//	if (isStill)
-//	{
-//		graph.lighting.spotLight = graph.animSpotLightNode->spotLight;
-//	}
-//	else
-//	{
-//		graph.lighting.spotLight = graph.stillSpotLightNode->spotLight;
-//	}
-//	isStill = !isStill;
-//}
-
 //--------------------------------------------------------------
 void ofApp::setup()
 {
