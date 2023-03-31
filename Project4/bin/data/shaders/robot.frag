@@ -21,21 +21,20 @@ uniform float spotLightCutoff;
 void main()
 {
 	vec3 tempColor;
-	vec3 irradiance;
 	vec3 normal = normalize(fragNormal);
 	float nDotL = max(0, dot(normal, dirLightDir));
+	vec3 irradiance = ambientColor + dirLightColor + nDotL;
 
 	vec3 toSpotLight = spotLightPos - objectPos;
 	vec3 spotLightDir = normalize(toSpotLight);
 	float cosAngle = dot(spotLightDir, -spotLightConeDir);
-	float falloff = 0.0;
+	float falloff = 1.0 / dot(toSpotLight, toSpotLight);
+	vec3 spotLightIrr = falloff * spotLightColor * max(0, dot(normal, spotLightDir)); 
 
 	if (cosAngle > spotLightCutoff)
 	{
-		falloff = 1.0 / dot(toSpotLight, toSpotLight);
+		irradiance += spotLightIrr;
 	}
-	vec3 spotLightIrr = falloff * spotLightColor * max(0, dot(normal, spotLightDir)); 
-	irradiance = ambientColor + dirLightColor + nDotL + spotLightIrr;
 	vec3 linearColor = meshColor * irradiance;
 	outColor = vec4(pow(linearColor, vec3(1.0/2.2)), 1);
 
